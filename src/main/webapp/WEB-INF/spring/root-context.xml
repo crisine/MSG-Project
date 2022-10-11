@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<!-- Root Context: defines shared resources visible to all other web components -->
+
+	<!-- DB 커넥션용 -->
+	
+	<!-- 
+		DB 연결하실 때 밑에 데이터베이스 이름, 아이디, 비번 다 넣어주시고 주석 풀어주세요
+		안 쓰고 그냥 풀면 오류나서 컨트롤러 사용 안 될겁니다
+	
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		<property name="driverClassName"
+			value="com.mysql.cj.jdbc.Driver"></property>
+		<property name="jdbcUrl"
+			value="jdbc:mysql://localhost:3306/데이터베이스이름?serverTimezone=Asia/Seoul"></property>
+		<property name="username" value="아이디"></property>
+		<property name="password" value="비번"></property>
+	</bean>
+
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"
+		destroy-method="close">
+		<constructor-arg ref="hikariConfig"></constructor-arg>
+	</bean>
+	
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	 -->
+
+	<!-- 빈 스캔 -->
+	<mybatis-spring:scan
+		base-package="com.spring.msg.persistance" />
+	<context:component-scan
+		base-package="com.spring.msg.service" />
+	<context:component-scan
+		base-package="com.spring.msg.controller" />
+
+</beans>
